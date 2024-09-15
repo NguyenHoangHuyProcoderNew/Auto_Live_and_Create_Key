@@ -486,12 +486,12 @@ def xuly_molive_meme(message):
                             log_info("Kết thúc tiến trình")
                             return
             except TimeoutException:
-                bot_reply(user_id, "Nút Bắt đầu live không xuất hiện sau khi lưu luồng live mới")
-                log_error("Không tồn tại nút mở live")
+                bot_reply(user_id, "Nút bắt đầu live không xuất hiện lần 1")
+                log_error("Nút bắt đầu live không xuất hiện trong lần 1")
 
                 # Làm mới lại trang web livestream sau khi lưu luồng live mà nút "Bắt đầu live" không xuất hiện
-                bot_reply(user_id, "Làm mới lại trang web")
-                log_info("Làm mới lại web")
+                bot_reply(user_id, "Làm mới lại trang web livestream")
+                log_info("Làm mới lại web livestream")
 
                 driver.refresh() # Làm mới lại trang web livestream
 
@@ -516,27 +516,28 @@ def xuly_molive_meme(message):
                         bot_reply(user_id, "Kiểm tra hoàn tất, nút Bắt đầu live đã xuất hiện trong lần kiểm tra thứ 2")
                         log_success("Nút mở phiên live đã xuất hiện trong lần kiểm tra thứ 2")
 
-                        bot_reply(user_id, "Tiến hành mở live")
-                        log_info("Mở phiên live trong lần kiểm tra thứ 2")
+                        """"Mở phiên live lần 2"""
+                        bot_reply(user_id, "Tiến hành mở phiên live lần 2")
+                        log_info("Tiến hành mở phiên live lần 2")
 
-                        """Mở live khi nút "Bắt đầu live đã xuất hiện trong lần kiểm tra thứ 2 """
                         # Kiểm tra xem có mở phiên live thành công hay không
                         try:
-                            # Click vào nút mở phiên live
+                            # Click vào nút "Bắt đầu live"
+                            log_info("Click vào nút Bắt đầu live")
                             driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
-                            log_info("Click vào nút mở phiên live")
                             
                             # Đợi thông báo của web xuất hiện sau khi click vào nút "Bắt đầu live"
                             WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div.notifyjs-corner > div > div.notifyjs-container > div")))
 
-                            # Lấy nội dung của thông báo
+                            # Lấy nội dung của thông báo sau khi click vào nút "Bắt đầu live"
                             thongbao_batdaulive = driver.execute_script('''
-                            // JavaScript code here
-                            // Đoạn mã JavaScript để lấy nội dung của phần tử
-                            var element = document.querySelector('div.text[data-notify-html="text"]');
-                            return element.textContent;
-                        ''')
-                            # Kiểm tra thông báo từ web
+                                // JavaScript code here
+                                // Đoạn mã JavaScript để lấy nội dung của phần tử
+                                var element = document.querySelector('div.text[data-notify-html="text"]');
+                                return element.textContent;
+                            ''')
+
+                            # Kiểm tra thông báo từ web sau khi click vào nút "Bắt đầu live"
                             if thongbao_batdaulive == "Success":
                                 bot_reply(user_id, "Mở live thành công")
                                 log_info(f"Thông báo của web là {thongbao_batdaulive} - Mở live thành công")
@@ -544,14 +545,16 @@ def xuly_molive_meme(message):
                                 # Truy cập vào phiên live sau khi mở live thành công để kiểm tra thời điểm phiên live được mở
                                 bot_reply(user_id, "Truy cập vào phiên live")
                                 log_error("Truy cập vào phiên live để kiểm tra thời điểm phiên live được diễn ra")
+
                                 try:
                                     # Truy cập vào phiên live
                                     driver.get(f'https://www.tiktok.com/@{id_tiktok}/live')
 
+                                    # Kiểm tra xem có truy cập phiên live thành công hay không
                                     WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[3]/div/div[1]/a')))
 
                                     bot_reply(user_id, "Truy cập phiên live thành công, khi nào phiên live diễn ra tôi sẽ thông báo cho bạn")
-                                    log_success("Truy cập vào phiên live thành công => TIẾN HÀNH KIỂM TRA")
+                                    log_success("Truy cập vào phiên live thành công => TIẾN HÀNH KIỂM TRA THỜI ĐIỂM PHIÊN LIVE ĐƯỢC MỞ")
 
                                     # Kiểm tra thời điểm phiên live được mở
                                     while True:
@@ -589,7 +592,7 @@ def xuly_molive_meme(message):
                                                 log_info("Kết thúc tiến trình")
                                                 return
                                             
-                                except TimeoutException:
+                                except TimeoutError:
                                     bot_reply(user_id, "Không thể truy cập phiên live, xảy ra sự cố kết nối internet")
                                     log_info("Truy cập phiên live thất bại, xảy ra sự cố kết nối internet")
 
