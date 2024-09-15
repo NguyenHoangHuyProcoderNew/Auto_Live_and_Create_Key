@@ -64,6 +64,12 @@ def xuly_molive_vanbao(message):
     id_tiktok = id_tiktok_vanbao
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_vanbao
 
+    # Gọi chức năng đóng trình duyệt Chrome driver cũ
+    bot_reply(user_id, "Đóng các phiên trình duyệt Chrome driver cũ")
+    log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
+
+    dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
+
     # Kiểm tra sự lựa chọn mà người dùng đã chọn ở hàm Chọn Nguồn Cho Phiên Live
     if message.text == "Hồi Chiêu":
         bot_reply(user_id, "Tiến hành mở phiên live với nguồn HỒI CHIÊU")
@@ -93,12 +99,6 @@ def xuly_molive_vanbao(message):
         log_error("Lựa chọn không hợp lệ - trở về menu chính")
         return
     
-    # Gọi chức năng đóng trình duyệt Chrome driver cũ
-    bot_reply(user_id, "Đóng các phiên trình duyệt Chrome driver cũ")
-    log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
-
-    dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
-
     # Khởi tạo Chrome driver
     driver = webdriver.Chrome(service=service, options=options)
 
