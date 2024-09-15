@@ -207,7 +207,7 @@ def xuly_molive_vanbao(message):
                     # Chờ tối đa 100 giây để đợi thông báo xuất hiện sau khi click vào nút "Bắt đầu live"
                     WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div.notifyjs-corner > div > div.notifyjs-container > div")))
 
-                    # Lấy dữ liệu của thông báo mở live lần 1
+                    # Lấy nội dung của thông báo mở live lần 1
                     thongbao_molive_lan1 = driver.execute_script('''
                         // JavaScript code here
                         // Đoạn mã JavaScript để lấy nội dung của phần tử
@@ -215,7 +215,7 @@ def xuly_molive_vanbao(message):
                         return element.textContent;
                     ''')
 
-                    # Kiểm tra thông báo mở live lần 1
+                    # Kiểm tra nội dung của thông báo mở live lần 1
                     if thongbao_molive_lan1 == "Success":
                         bot_reply(user_id, "Mở phiên live thành công")
                         log_info(f"Thông báo của web là {thongbao_molive_lan1} - Mở live thành công")
@@ -294,10 +294,137 @@ def xuly_molive_vanbao(message):
                     bot_reply(user_id, "Mở phiên live thất bại, thông báo mở phiên live không xuất hiện trong thời gian chờ")
                     log_error("Mở phiên live thất bại, thông báo mở phiên live không xuất hiện trong thời gian chờ")
             except TimeoutException:
-                bot_reply(user_id, "Nút mở live không xuất hiện lần 1")
-                log_error("Không tồn tại nút mở live lần 1")
+                bot_reply(user_id, "Nút Bắt đầu live không xuất hiện lần 1")
+                log_error("Không tồn tại nút Bắt đầu live lần 1")
 
-                # Kiểm tra sự xuất hiện của nút bắt đầu live lần 2
+                bot_reply(user_id, "Làm mới lại trang web livestream để kiểm tra sự xuất hiện của nút Bắt đầu live lần 2")
+                log_info("Làm mới lại trang web livestream")
+
+                driver.refresh() # Làm mới lại trang web livestream
+
+                # Kiểm tra xem có làm mới lại trang web livestream thành công hay không để kiểm tra sự xuất hiện của nút Bắt đầu live lần 2
+                try:
+                    # Chờ tối đa 100 giây để đợi phần tử XPATCH được chỉ định xuất hiện, để đảm bảo trang web livestream đã làm mới hoàn tất
+                    WebDriverWait(driver, 100).until(
+                        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b'))
+                    )
+
+                    bot_reply(user_id, "Làm mới lại trang web livestream thành công")
+                    log_success("Làm mới lại trang web livestream thành công để kiểm tra sự xuất hiện của nút Bắt đầu live lần 2")
+
+                    # Kiểm tra sự xuất hiện của nút bắt đầu live lần 2
+                    try:
+                        # Chờ tối đa 10 giây để đợi nút "Bắt đầu live" xuất hiện lần 2
+                        WebDriverWait(driver, 10).until(
+                            EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']"))
+                        )
+
+                        bot_reply(user_id, "Nút bắt đầu live đã xuất hiện trong lần kiểm tra thứ 2")
+                        bot_reply("Tiến hành mở phiên live")
+
+                        # Click vào nút "Bắt đầu live" lần 2
+                        driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
+
+                        # Lấy nội dung của thông báo "Bắt đầu live" lần 2
+                        thongbao_molive_lan2 = driver.execute_script('''
+                            // JavaScript code here
+                            // Đoạn mã JavaScript để lấy nội dung của phần tử
+                            var element = document.querySelector('div.text[data-notify-html="text"]');
+                            return element.textContent;
+                        ''')
+
+                        if thongbao_molive_lan2 == "Success":
+                            bot_reply("Mở phiên live thành công")
+                            log_info(f"Thông báo của web là {thongbao_molive_lan1} - Mở live thành công")
+
+                            # Truy cập vào phiên live để  kiểm tra thời điểm phiên live được mở lần 2
+                            bot_reply(user_id, "Tiến hành truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
+                            log_info("Truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
+
+                            # Kiểm tra xem có truy cập phiên live thành công hay không lần 2
+                            try:
+                                # Mở trang web livestream
+                                driver.get(f'https://www.tiktok.com/@{id_tiktok}/live')
+
+                                # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất lần 1
+                                WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[3]/div/div[1]/a')))
+
+                                bot_reply(user_id, "Truy cập phiên live thành công, khi nào phiên live diễn ra tôi sẽ thông báo cho bạn")
+                                log_success("Truy cập phiên live thành công => TIẾN HÀNH KIỂM TRA THỜI ĐIỂM PHIÊN LIVE ĐƯỢC MỞ")
+
+                                # Vòng lặp whilte lặp lại việc kiểm tra số lượng người xem của phiên live cho đến khi nào phiên live được diễn ra thì mới kết thúc vòng lặp lần 1
+                                while True:
+                                    now = datetime.datetime.now() # Biến lấy ngày giờ hiện tại của hệ thống
+                                    try:
+                                        # Đợi tối đa 10 giây để XPATCH chứa dữ liệu là số lượng người xem của phiên live xuất hiện rồi mới kiểm tra
+                                        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[4]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/div[2]/div[2]/div/div')))
+                                        
+                                        bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+                                        log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+
+                                        log_info("Đóng trình duyệt chrome")
+                                        driver.quit()
+
+                                        log_info("Kết thúc tiến trình")
+                                        return
+                                    except TimeoutException:
+                                        log_error("Phiên live chưa được diễn ra")
+                                        log_info("Làm mới lại phiên live")
+
+                                        # Làm mới lại phiên live
+                                        driver.refresh()
+
+                                        # Kiểm tra xem có làm mới lại phiên live thành công hay không
+                                        try:
+                                            # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất
+                                            WebDriverWait(driver, 100).until(
+                                                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div[3]/div/div[1]/a"))
+                                            )
+                                        except TimeoutException:
+                                            bot_reply(user_id, "Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
+                                            log_error("Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
+
+                                            log_info("Đóng trình duyệt chrome")
+                                            driver.quit()
+
+                                            log_info("Kết thúc tiến trình")
+                                            return
+                            except TimeoutException:
+                                bot_reply(user_id, "Không thể truy cập phiên live, xảy ra sự cố kết nối internet")
+                                log_info("Không thể truy cập phiên live do kết nối internet")
+
+                                log_info("Đóng trình duyệt chrome")
+                                driver.quit()
+
+                                log_info("Kết thúc tiến trình")
+                                return
+                        else:
+                            bot_reply(user_id, f"Mở phiên live thất bại\nThông báo từ web: {thongbao_molive_lan1}")
+                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan1}")
+
+                            driver.quit()
+                            log_info("Đóng trình duyệt chrome")
+
+                            log_info("Kết thúc tiến trình")
+                            return
+                    except TimeoutException:
+                        bot_reply(user_id, "Nút Bắt đầu live vẫn không xuất hiện trong lần kiểm tra thứ 2, vui lòng truy cập vào trang web và kiểm tra lại")
+                        log_error("Không tồn tại nút mở live lần 2")
+
+                        log_info("Đóng trình duyệt Chrome")
+                        driver.quit()
+
+                        log_info("Kết thúc tiến trình")
+                        return
+                except TimeoutError:
+                    bot_reply(user_id, "làm mới lại trang web livestream thất bại, trong lần kiểm tra sự xuất hiện của nút Bắt đầu live lần 2")
+                    log_error("làm mới lại trang web livestream thất bại, trong lần kiểm tra sự xuất hiện của nút Bắt đầu live lần 2")
+
+                    log_info("Đóng trình duyệt Chrome")
+                    driver.quit()
+
+                    log_info("Kết thúc tiến trình")
+                    return
         except TimeoutError:
             bot_reply(user_id, "Lưu luồng live thất bại, xảy ra sự cố kết nối internet")
             log_error("Lưu luồng live thất bại, xảy ra sự cố kết nối internet")
