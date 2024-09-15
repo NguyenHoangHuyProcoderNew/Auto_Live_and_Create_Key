@@ -3,12 +3,12 @@ import os
 import signal
 import psutil
 
-chromedriver_path = r'D:\\BOT_TELE_AUTO_WORK\\BOT LIVE THU CONG\\chrome_driver\\chromedriver.exe'
-dir = "D:\\BOT_TELE_AUTO_WORK\\BOT LIVE THU CONG\\du lieu trinh duyet"
+chromedriver_path = r'D:\\Profile\\chrome_driver\\chromedriver.exe'
+dir = "D:\\Profile\\du lieu trinh duyet"
 
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho Mac OS
-# def dong_toanbo_trinhduyet_chrome(message):
+# def dong_chromedriver_cu(message):
 #     try:
 #         # Khởi tạo driver Chrome
 #         driver = webdriver.Chrome()
@@ -34,7 +34,7 @@ dir = "D:\\BOT_TELE_AUTO_WORK\\BOT LIVE THU CONG\\du lieu trinh duyet"
 #         print(f"Error: {e}")
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho windows
-def dong_toanbo_trinhduyet_chrome(message):
+def dong_chromedriver_cu(message):
     # Danh sách chỉ chứa chromedriver
     browser_names = ['chromedriver.exe']
     

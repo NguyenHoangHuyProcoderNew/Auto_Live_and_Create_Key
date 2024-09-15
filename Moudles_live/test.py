@@ -43,14 +43,14 @@ from Moudles_support.support_bot import user_id
 
 def main_test(message):
     """"Nhập chức năng đóng toàn bộ trình duyệt Chrome trước khi khởi tạo Chrome driver mới"""
-    from Moudles_support.support_chrome_driver import dong_toanbo_trinhduyet_chrome        
+    from Moudles_support.support_chrome_driver import dong_chromedriver_cu        
 
     """" Đóng các phiên trình duyệt Chrome cũ trước khi khởi tạo Chrome driver mới"""
     bot_reply(user_id, "Đóng các phiên trình duyệt Chrome cũ")
     log_info("Chạy hàm đóng toàn bộ trình duyệt trước khi khởi tạo Chrome driver mới")
 
     # Hàm đóng các phiên trình duyệt Chrome driver cũ
-    dong_toanbo_trinhduyet_chrome(message)
+    dong_chromedriver_cu(message)
 
     """" Xác nhận đã tắt các trình duyệt Chrome driver cũ thành công"""
     bot_reply(user_id, "Đóng các phiên trình duyệt Chrome cũ thành công")

@@ -62,13 +62,13 @@ def xuly_tatlive(message):
     # Kiểm tra sự lựa chọn của người dùng
     if message.text == "Có":
         # Nhập chức năng đóng trình duyệt Chrome driver cũ
-        from Moudles_support.support_chrome_driver import dong_toanbo_trinhduyet_chrome
+        from Moudles_support.support_chrome_driver import dong_chromedriver_cu
 
         # Gọi chức năng đóng trình duyệt Chrome driver cũ
         bot_reply(user_id, "Đóng các phiên trình duyệt Chrome driver cũ")
         log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
 
-        dong_toanbo_trinhduyet_chrome(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
+        dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
 
         # Khởi tạo Chrome driver
         driver = webdriver.Chrome(service=service, options=options)

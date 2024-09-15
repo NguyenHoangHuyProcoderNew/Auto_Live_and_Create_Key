@@ -77,12 +77,12 @@ def tatlive(message):
     bot.register_next_step_handler(message, xuly_tatlive)
 
 # ĐỔI IP
-@bot.message_handler(func=lambda message: message.text in ["Đổi IP", "Có, tiếp tục đổi IP"])
+@bot.message_handler(func=lambda message: message.text in ["Đổi IP", "Có, tiếp tục đổi IP & Thiết Bị"])
 def doiip(message):
-    from Moudles_live.Doi_IP import chon_taikhoan_doiip_va_thietbi, xuly_doiip
-
+    from Moudles_live.Doi_IP import chon_taikhoan_doiip_va_thietbi, xuly_doiip_va_thietbi
+    log_info("Người dùng đã chọn đổi IP từ menu chính")
     chon_taikhoan_doiip_va_thietbi(message)
-    bot.register_next_step_handler(message, xuly_doiip)
+    bot.register_next_step_handler(message, xuly_doiip_va_thietbi)
 
 # Trở lại menu chính
 @bot.message_handler(func=lambda message: message.text in ["Trở lại menu chính", "Trở về menu chính", "Không, trở về menu chính"])
