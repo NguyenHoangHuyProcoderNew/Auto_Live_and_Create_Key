@@ -25,8 +25,11 @@ doi_thietbi_meme = "renew-22733"
 id_tiktok_meme = "meme.l810"
 chon_taikhoan_meme = "#tiktok_account > option:nth-child(2)"
 
-hoichieu_fullhd = "https://drive.google.com/file/d/1PrRqUCTGm0nseYKJwARZYuCmsxMc-T7k/view?usp=drivesdk"
-quynhem = "https://drive.google.com/file/d/1IyXrUXOJGvzPrxxgP7W0oX0ONJciesdo/view?usp=drivesdk"
+hoichieu_cu = "https://drive.google.com/file/d/1PrRqUCTGm0nseYKJwARZYuCmsxMc-T7k/view?usp=drivesdk"
+hoichieu_moi = "https://drive.google.com/file/d/1lJQ6e_qmaMKY0SRf33_aUh1uthmHaUdp/view?usp=sharing"
+quynhem_chui = "https://drive.google.com/file/d/1IyXrUXOJGvzPrxxgP7W0oX0ONJciesdo/view?usp=drivesdk"
 nammod = "https://www.tiktok.com/@trumkeoranknammod/live"
+kenhchinh_quynhem = "https://www.tiktok.com/@tytythanrien/live"
+
 
 tieudelive = "MOD MAP ZALO 08.15.91.4.0.9.9"

@@ -59,36 +59,42 @@ def chon_nguon_chophienlive_phulbh(message):
 def xuly_molive_phulbh(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import id_tiktok_vanbao, chon_taikhoan_vanbao, chon_taikhoan_meme, chon_taikhoan_nickphulbh, hoichieu_fullhd, quynhem, nammod, tieudelive, id_tiktok_meme, id_tiktok_nickphulbh
+    from Moudles_support.support_bot import id_tiktok_vanbao, chon_taikhoan_vanbao, chon_taikhoan_meme, chon_taikhoan_nickphulbh, hoichieu_cu, quynhem_chui, nammod, tieudelive, id_tiktok_meme, id_tiktok_nickphulbh, hoichieu_moi, kenhchinh_quynhem
 
     id_tiktok = id_tiktok_nickphulbh
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_nickphulbh
 
-    # Gọi chức năng đóng trình duyệt Chrome driver cũ
-    bot_reply(user_id, "Đóng các phiên trình duyệt Chrome driver cũ")
-    log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
-
-    dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
-
     # Kiểm tra sự lựa chọn mà người dùng đã chọn ở hàm Chọn Nguồn Cho Phiên Live
-    if message.text == "Hồi Chiêu":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn HỒI CHIÊU")
+    if message.text == "Hồi Chiêu Cũ":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn HỒI CHIÊU CŨ")
         log_info(f"Người dùng đã chọn nguồn live HỒI CHIÊU")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = hoichieu_fullhd
-    elif message.text == "Quỳnh Em":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM")
-        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM")
+        linknguon = hoichieu_cu
+    elif message.text == "Quỳnh Em Bản Full HD":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
+        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = quynhem
-    elif message.text == "Nam Mod":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Nam Mod")
-        log_info("Người dùng đã chọn nguồn live Nam Mod")
+        linknguon = quynhem_chui
+    elif message.text == "Kênh Chính Nam Mod":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Nam Mod")
+        log_info("Người dùng đã chọn nguồn live Kênh Chính Nam Mod")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
         linknguon = nammod
+    elif message.text == "Hồi Chiêu Mới":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
+        log_info("Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
+
+        bot_reply(user_id, "Truy cập vào trang web livestream")
+        linknguon = hoichieu_moi
+    elif message.text == "Kênh chính QUỲNH EM":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+        log_info("Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+
+        bot_reply(user_id, "Truy cập vào trang web livestream")
+        linknguon = kenhchinh_quynhem
     elif message.text == "Trở lại menu chính":
         log_info(f"Người dùng đã chọn Trở lại menu chính")
         trolai_menuchinh(message)
@@ -98,6 +104,12 @@ def xuly_molive_phulbh(message):
         trolai_menuchinh(message)
         log_error("Lựa chọn không hợp lệ - trở về menu chính")
         return
+    
+    # Gọi chức năng đóng trình duyệt Chrome driver cũ
+    bot_reply(user_id, "Đóng các phiên trình duyệt Chrome driver cũ")
+    log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
+
+    dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
     
     # Khởi tạo Chrome driver
     driver = webdriver.Chrome(service=service, options=options)
@@ -272,7 +284,7 @@ def xuly_molive_phulbh(message):
 
                                         log_info("Kết thúc tiến trình")
                                         return
-                        except TimeoutException:
+                        except TimeoutError:
                             bot_reply(user_id, "Không thể truy cập phiên live, xảy ra sự cố kết nối internet")
                             log_info("Không thể truy cập phiên live do kết nối internet")
 
@@ -389,7 +401,7 @@ def xuly_molive_phulbh(message):
 
                                             log_info("Kết thúc tiến trình")
                                             return
-                            except TimeoutException:
+                            except TimeoutError:
                                 bot_reply(user_id, "Không thể truy cập phiên live, xảy ra sự cố kết nối internet")
                                 log_info("Không thể truy cập phiên live do kết nối internet")
 

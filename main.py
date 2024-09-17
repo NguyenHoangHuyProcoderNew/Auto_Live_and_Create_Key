@@ -48,46 +48,46 @@ def chon_taikhoan_molive(message):
 @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Văn Bảo")
 def molive_vanbao(message):
     from Moudles_live.Molive_VanBao import chon_nguon_chophienlive_vanbao, xuly_molive_vanbao
-    log_info("Người dùng đã chọn mở live tài khoản Văn Bảo")
-
     chon_nguon_chophienlive_vanbao(message)
     bot.register_next_step_handler(message, xuly_molive_vanbao)
+
+    log_info("Người dùng đã chọn mở live tài khoản Văn Bảo")
 
 # Mở live tài khoản phụ LBH
 @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản phụ LBH")
 def molive_phulbh(message):
     from Moudles_live.Molive_PhuLBH import chon_nguon_chophienlive_phulbh, xuly_molive_phulbh
-    log_info("Người dùng đã chọn mở live tài khoản phụ LBH")
-
     chon_nguon_chophienlive_phulbh(message)
     bot.register_next_step_handler(message, xuly_molive_phulbh)
+
+    log_info("Người dùng đã chọn mở live tài khoản phụ LBH")
 
 # Mở live tài khoản Meme
 @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Meme")
 def molive_meme(message):
     from Moudles_live.Molive_Meme import chon_nguon_chophienlive_meme, xuly_molive_meme
-    log_info("Người dùng đã chọn mở live tài khoản Meme")
-
     chon_nguon_chophienlive_meme(message)
     bot.register_next_step_handler(message, xuly_molive_meme)
+
+    log_info("Người dùng đã chọn mở live tài khoản Meme")
 
 # Tắt live
 @bot.message_handler(func=lambda message: message.text == "Tắt live")
 def tatlive(message):
     from Moudles_live.Tatlive import xacnhan_tatlive, xuly_tatlive
-    log_info("Người dùng đã chọn Tắt live từ menu chính")
-
     xacnhan_tatlive(message)
     bot.register_next_step_handler(message, xuly_tatlive)
+
+    log_info("Người dùng đã chọn Tắt live từ menu chính")
 
 # ĐỔI IP
 @bot.message_handler(func=lambda message: message.text in ["Đổi IP", "Có, tiếp tục đổi IP & Thiết Bị"])
 def doiip(message):
     from Moudles_live.Doi_IP import chon_taikhoan_doiip_va_thietbi, xuly_doiip_va_thietbi
-    log_info("Người dùng đã chọn đổi IP từ menu chính")
-
     chon_taikhoan_doiip_va_thietbi(message)
     bot.register_next_step_handler(message, xuly_doiip_va_thietbi)
+
+    log_info("Người dùng đã chọn đổi IP từ menu chính")
 
 # Trở lại menu chính
 @bot.message_handler(func=lambda message: message.text in ["Trở lại menu chính", "Trở về menu chính", "Không, trở về menu chính"])
