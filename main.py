@@ -27,7 +27,7 @@ API_TOKEN = '7329003333:AAF7GhjivbGnk0jSGE8XfefFh_-shHAFsGc'  # TOKEN CỦA BOT
 bot = telebot.TeleBot(API_TOKEN)
 
 """" Bắt đầu các chức năng của bot """
-log_success(f"KHỞI ĐỘNG BOT LIVESTREAM THÀNH CÔNG - ĐANG CHỜ LỆNH TỪ NGƯỜI DÙNG...")
+log_success(f"KHỞI ĐỘNG BOT LIVESTREAM THÀNH CÔNG - ĐANG CHỜ LỆNH TỪ NGƯỜI DÙNG...") 
 
 # Chức năng /start
 @bot.message_handler(commands=['start'])
