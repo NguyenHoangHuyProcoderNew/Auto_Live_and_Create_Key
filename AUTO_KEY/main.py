@@ -45,14 +45,13 @@ def ios_vip(message):
     yeucau_nhap_thoigian_key_ios_vip(message)
     bot.register_next_step_handler(message, xuly_taokey_ios_vip)
 
-# # CHỨC NĂNG TẠO KEY ANDROID
-# from ANDROID.android import ask_user_timekey_android
-# from ANDROID.android import main_create_key_android
-# @bot.message_handler(commands=['android'])
-# def android(message):
-#     log_info(f"Người dùng {username} đã sử dụng lệnh /android")
-#     ask_user_timekey_android(message)
-#     bot.register_next_step_handler(message, main_create_key_android)
+# Tạo key ANDROID
+@bot.message_handler(commands=['android'])
+def taokey_android(message):
+    from Moudles_key.android import yeucau_nhap_thoigian_key_android, xuly_taokey_android
+
+    yeucau_nhap_thoigian_key_android(message)
+    bot.register_next_step_handler(message, xuly_taokey_android)
 
 while True:
     try:

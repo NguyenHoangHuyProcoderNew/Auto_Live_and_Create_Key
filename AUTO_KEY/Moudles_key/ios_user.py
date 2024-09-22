@@ -18,9 +18,17 @@ from selenium.common.exceptions import TimeoutException
 from colorama import Fore, Style, init
 from telebot import types
 import json
+# Nhập chức năng in log ra màn hình
+from Moudles_support.print_log import log_error, log_info, log_success
+
+# Nhập chức năng bot phản hồi lại người dùng
+from Moudles_support.support_bot import bot_reply, API_TOKEN
+
+# ID của ADMIN Bot
+from Moudles_support.support_bot import user_id
 
 # Cấu hình API telegram
-API_TOKEN = '7371036517:AAEB8PtQRtSrvDOxQUUW2su7ObGso6ltq8w' # Token của BOT
+# API_TOKEN = '7371036517:AAEB8PtQRtSrvDOxQUUW2su7ObGso6ltq8w' # Token của BOT
 bot = telebot.TeleBot(API_TOKEN)
 
 # Cấu hình Chrome driver
@@ -32,14 +40,6 @@ service = Service(chromedriver_path)
 service_log_path = os.path.devnull
 service = Service(chromedriver_path, service_log_path=service_log_path)
 
-# Nhập chức năng in log ra màn hình
-from Moudles_support.print_log import log_error, log_info, log_success
-
-# Nhập chức năng bot phản hồi lại người dùng
-from Moudles_support.support_bot import bot_reply
-
-# ID của ADMIN Bot
-from Moudles_support.support_bot import user_id
 
 thoigian_key = None
 
