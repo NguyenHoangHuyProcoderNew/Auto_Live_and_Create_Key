@@ -3,8 +3,8 @@ import os
 import signal
 import psutil
 
-chromedriver_path = r'D:\\Profile\\chrome_driver\\chromedriver.exe'
-dir = "D:\\Profile\\du lieu trinh duyet"
+chromedriver_path = r'/Users/macx/Downloads/Chrome_driver/chromedriver'
+dir = "/Users/macx/Downloads/Chrome_driver/Du lieu trinh duyet"
 
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho Mac OS
