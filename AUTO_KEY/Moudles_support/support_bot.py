@@ -1,6 +1,6 @@
 import telebot
 
-API_TOKEN = '7371036517:AAEB8PtQRtSrvDOxQUUW2su7ObGso6ltq8w'  # TOKEN CỦA BOT
+API_TOKEN = '6555297922:AAF7DFvu9c-gi10-wBtwa_3jKa3TeyInNQ8'
 bot = telebot.TeleBot(API_TOKEN)
 
 user_id = "5634845912"

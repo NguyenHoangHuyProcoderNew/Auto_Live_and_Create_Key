@@ -4,8 +4,6 @@ import signal
 import psutil
 
 chromedriver_path = r'/Users/macx/Downloads/Project_AUTO_WORK/AUTO_LIVE/Chrome_driver/MacOS/chromedriver'
-dir = "/Users/macx/Downloads/Chrome_driver/Du lieu trinh duyet"
-
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho Mac OS
 # def dong_chromedriver_cu(message):
