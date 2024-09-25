@@ -32,7 +32,7 @@ from Moudles_support.support_bot import user_id
 bot = telebot.TeleBot(API_TOKEN)
 
 # Cấu hình Chrome driver
-from Moudles_support.support_chrome_driver import chromedriver_path, dir
+from Moudles_support.support_chrome_driver import chromedriver_path
 options = Options()
 options.add_argument('--log-level=3')  # Vô hiệu hóa thông báo của Selenium
 
