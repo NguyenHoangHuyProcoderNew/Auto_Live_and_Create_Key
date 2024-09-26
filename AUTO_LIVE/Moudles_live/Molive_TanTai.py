@@ -47,22 +47,22 @@ def trolai_menuchinh(message):
     bot.send_message(message.chat.id, "VUI LÒNG CHỌN 👇", reply_markup=nut_menuchinh)
 
 # Yêu cầu người dùng chọn nguồn cho phiên live 
-def chon_nguon_chophienlive_vanbao(message):
+def chon_nguon_chophienlive_tantai(message):
     # Tạo nút chọn nguồn cho phiên live
     nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('Hồi Chiêu Cũ', 'Hồi Chiêu Mới', 'Quỳnh Em Bản Full HD').add('Kênh Chính Nam Mod', 'Kênh chính QUỲNH EM').add('Trở lại menu chính')
     bot.send_message(message.chat.id, "Bạn muốn sử dụng nguồn live nào cho phiên live?", reply_markup=nut_chon_nguon_chophienlive)
     log_info("Đang yêu cầu người dùng chọn nguồn cho phiên live")
     
-    bot.register_next_step_handler(message, xuly_molive_vanbao)
+    bot.register_next_step_handler(message, xuly_molive_tantai)
 
 # Xử lý việc mở live
-def xuly_molive_vanbao(message):
+def xuly_molive_tantai(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import id_tiktok_vanbao, chon_taikhoan_vanbao, chon_taikhoan_meme, chon_taikhoan_nickphulbh, hoichieu_cu, quynhem_chui, nammod, tieudelive, id_tiktok_meme, id_tiktok_nickphulbh, hoichieu_moi, kenhchinh_quynhem
+    from Moudles_support.support_bot import id_tiktok_tantai, chon_taikhoan_tantai, chon_taikhoan_meme, chon_taikhoan_nickphulbh, hoichieu_cu, quynhem_chui, nammod, tieudelive, id_tiktok_meme, id_tiktok_nickphulbh, hoichieu_moi, kenhchinh_quynhem
 
-    id_tiktok = id_tiktok_vanbao
-    chon_taikhoan_taocauhinhmoi = chon_taikhoan_vanbao
+    id_tiktok = id_tiktok_tantai
+    chon_taikhoan_taocauhinhmoi = chon_taikhoan_tantai
 
     # Kiểm tra sự lựa chọn mà người dùng đã chọn ở hàm Chọn Nguồn Cho Phiên Live
     if message.text == "Hồi Chiêu Cũ":

@@ -60,16 +60,16 @@ def chon_taikhoan_doiip_va_thietbi(message):
 def xuly_doiip_va_thietbi(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import doi_thietbi_meme, doi_thietbi_nickphulbh, doi_thietbi_vanbao, doiip_meme, doiip_nickphulbh, doiip_vanbao
+    from Moudles_support.support_bot import doi_thietbi_meme, doi_thietbi_nickphulbh, doi_thietbi_tantai, doiip_meme, doiip_nickphulbh, doiip_tantai
 
     # Kiểm tra sự lựa chọn của người dùng
-    if message.text == "Đổi IP Tài khoản Văn Bảo":
-        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị cho Tài khoản Văn Bảo")
-        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Văn Bảo")
+    if message.text == "Đổi IP Tài khoản Tấn Tài":
+        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị cho Tài khoản Tấn Tài")
+        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Tấn Tài")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
-        ip = doiip_vanbao
-        thietbi = doi_thietbi_vanbao
+        ip = doiip_tantai
+        thietbi = doi_thietbi_tantai
     elif message.text == "Đổi IP Tài khoản Phụ LBH":
         bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Phụ LBH")
         log_info(f"Người dùng đã chọn Đổi IP Tài khoản Phụ LBH")

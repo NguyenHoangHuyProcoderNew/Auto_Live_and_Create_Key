@@ -54,7 +54,7 @@ def xuly_taokey_ios_vip(message):
     global thoigian_key
     thoigian_key = timekey = int(message.text)
 
-    bot_reply(user_id, f"Tiến hành tạo: 01 key\nThiết bị: IOS\nServer: IOS USER\nThời gian sử dụng key: {timekey} ngày")
+    bot_reply(user_id, f"Tiến hành tạo: 01 key\nThiết bị: IOS\nServer: IOS VIP\nThời gian sử dụng key: {timekey} ngày")
     log_info(f"Người dùng đã yêu cầu tạo 1 key {timekey} ngày")
 
     if thoigian_key == 1:
@@ -128,8 +128,8 @@ def taokey_7ngay(message):
     # Khởi tạo Chrome driver mới
     driver = webdriver.Chrome(service=service, options=options)
 
-    bot_reply(user_id, "Do thời gian tạo key là 1, nên tiến hành tạo key nhanh bằng API của web")
-    log_info("Thời gian tạo key là 1, nên có thể tạo key nhanh bàng API từ web")
+    bot_reply(user_id, "Do thời gian tạo key là 7, nên tiến hành tạo key nhanh bằng API của web")
+    log_info("Thời gian tạo key là 7, nên có thể tạo key nhanh bàng API từ web")
 
     # Tạo key bằng API của web
     try:
@@ -173,8 +173,8 @@ def taokey_30ngay(message):
     # Khởi tạo Chrome driver mới
     driver = webdriver.Chrome(service=service, options=options)
 
-    bot_reply(user_id, "Do thời gian tạo key là 1, nên tiến hành tạo key nhanh bằng API của web")
-    log_info("Thời gian tạo key là 1, nên có thể tạo key nhanh bàng API từ web")
+    bot_reply(user_id, "Do thời gian tạo key là 30, nên tiến hành tạo key nhanh bằng API của web")
+    log_info("Thời gian tạo key là 30, nên có thể tạo key nhanh bàng API từ web")
 
     # Tạo key bằng API của web
     try:
@@ -218,8 +218,8 @@ def taokey_365ngay(message):
     # Khởi tạo Chrome driver mới
     driver = webdriver.Chrome(service=service, options=options)
 
-    bot_reply(user_id, "Do thời gian tạo key là 1, nên tiến hành tạo key nhanh bằng API của web")
-    log_info("Thời gian tạo key là 1, nên có thể tạo key nhanh bàng API từ web")
+    bot_reply(user_id, "Do thời gian tạo key là 365, nên tiến hành tạo key nhanh bằng API của web")
+    log_info("Thời gian tạo key là 365, nên có thể tạo key nhanh bàng API từ web")
 
     # Tạo key bằng API của web
     try:

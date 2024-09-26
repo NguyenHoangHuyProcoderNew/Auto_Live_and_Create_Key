@@ -10,10 +10,10 @@ def bot_reply(user_id, message):
     # Gửi tin nhắn đến người dùng
     bot.send_message(user_id, message)
 
-doiip_vanbao = "ip-23847"
-doi_thietbi_vanbao = "renew-23847"
-id_tiktok_vanbao = "vanbao165201"
-chon_taikhoan_vanbao = "#tiktok_account > option:nth-child(3)"
+doiip_tantai = "ip-23865"
+doi_thietbi_tantai = "renew-23865"
+id_tiktok_tantai = "tan_tai_hai_doi___"
+chon_taikhoan_tantai = "#tiktok_account > option:nth-child(5)"
 
 doiip_nickphulbh = "ip-23848"
 doi_thietbi_nickphulbh = "renew-23848"
@@ -32,4 +32,4 @@ nammod = "https://www.tiktok.com/@trumkeoranknammod/live"
 kenhchinh_quynhem = "https://www.tiktok.com/@tytythanrien/live"
 
 
-tieudelive = "MOD MAP ZALO 08.15.91.4.0.9.9"
+tieudelive = ""
