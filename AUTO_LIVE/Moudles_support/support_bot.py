@@ -10,20 +10,20 @@ def bot_reply(user_id, message):
     # Gửi tin nhắn đến người dùng
     bot.send_message(user_id, message)
 
-doiip_tantai = "ip-23865"
-doi_thietbi_tantai = "renew-23865"
+doiip_tantai = "ip-23959"
+doi_thietbi_tantai = "renew-23959"
 id_tiktok_tantai = "tan_tai_hai_doi___"
-chon_taikhoan_tantai = "#tiktok_account > option:nth-child(5)"
+chon_taikhoan_tantai = "#tiktok_account > option:nth-child(2)"
 
-doiip_nickphulbh = "ip-23848"
-doi_thietbi_nickphulbh = "renew-23848"
+doiip_nickphulbh = "ip-23960"
+doi_thietbi_nickphulbh = "renew-23960"
 id_tiktok_nickphulbh = "nammapsang_keorank"
-chon_taikhoan_nickphulbh = "#tiktok_account > option:nth-child(4)"
+chon_taikhoan_nickphulbh = "#tiktok_account > option:nth-child(3)"
 
-doiip_meme = "ip-22733"
-doi_thietbi_meme = "renew-22733"
+doiip_meme = "ip-23961"
+doi_thietbi_meme = "renew-23961"
 id_tiktok_meme = "meme.l810"
-chon_taikhoan_meme = "#tiktok_account > option:nth-child(2)"
+chon_taikhoan_meme = "#tiktok_account > option:nth-child(4)"
 
 hoichieu_cu = "https://drive.google.com/file/d/1PrRqUCTGm0nseYKJwARZYuCmsxMc-T7k/view?usp=drivesdk"
 hoichieu_moi = "https://drive.google.com/file/d/1lJQ6e_qmaMKY0SRf33_aUh1uthmHaUdp/view?usp=sharing"
@@ -32,4 +32,4 @@ nammod = "https://www.tiktok.com/@trumkeoranknammod/live"
 kenhchinh_quynhem = "https://www.tiktok.com/@tytythanrien/live"
 
 
-tieudelive = ""
+tieudelive = "kéo rank Liên Quân"
