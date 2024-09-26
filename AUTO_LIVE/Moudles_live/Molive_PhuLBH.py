@@ -59,7 +59,7 @@ def chon_nguon_chophienlive_phulbh(message):
 def xuly_molive_phulbh(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import id_tiktok_vanbao, chon_taikhoan_vanbao, chon_taikhoan_meme, chon_taikhoan_nickphulbh, hoichieu_cu, quynhem_chui, nammod, tieudelive, id_tiktok_meme, id_tiktok_nickphulbh, hoichieu_moi, kenhchinh_quynhem
+    from Moudles_support.support_bot import id_tiktok_nickphulbh, chon_taikhoan_nickphulbh, tieudelive, hoichieu_cu, quynhem_chui, nammod, hoichieu_moi, kenhchinh_quynhem
 
     id_tiktok = id_tiktok_nickphulbh
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_nickphulbh

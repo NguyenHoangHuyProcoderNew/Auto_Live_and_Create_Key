@@ -49,7 +49,7 @@ def trolai_menuchinh(message):
 # Yêu cầu người dùng chọn tài khoản cần đổi IP & Thiết Bị
 def chon_taikhoan_doiip_va_thietbi(message):
     # Tạo nút chọn tài khoản cần đổi IP & Thiết Bị
-    button_chontaikhoan = telebot.types.ReplyKeyboardMarkup(True).add("Đổi IP Tài khoản Văn Bảo").add("Đổi IP Tài khoản Phụ LBH").add("Đổi IP Tài khoản Meme").add("Trở lại menu chính")
+    button_chontaikhoan = telebot.types.ReplyKeyboardMarkup(True).add("Đổi IP Tài khoản Tấn Tài").add("Đổi IP Tài khoản Phụ LBH").add("Đổi IP Tài khoản Meme").add("Trở lại menu chính")
 
     # Hỏi người dùng muốn chọn tài khoản nào để đổi IP & Thiết Bị
     bot.send_message(message.chat.id, "Bạn muốn đổi IP tài khoản nào?", reply_markup=button_chontaikhoan)
