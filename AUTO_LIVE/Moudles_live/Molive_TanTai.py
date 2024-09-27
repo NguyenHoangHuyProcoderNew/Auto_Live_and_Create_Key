@@ -59,7 +59,7 @@ def chon_nguon_chophienlive_tantai(message):
 def xuly_molive_tantai(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import id_tiktok_tantai, chon_taikhoan_tantai, tieudelive, hoichieu_cu, quynhem_chui, nammod, hoichieu_moi, kenhchinh_quynhem
+    from Moudles_support.support_bot import chonkieulive, id_tiktok_tantai, chon_taikhoan_tantai, tieudelive, hoichieu_cu, quynhem_chui, nammod, hoichieu_moi, kenhchinh_quynhem
 
     id_tiktok = id_tiktok_tantai
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_tantai
@@ -176,7 +176,7 @@ def xuly_molive_tantai(message):
         driver.find_element(By.CSS_SELECTOR, "#topic > option:nth-child(11)").click()
 
         log_info("Đang chọn kiểu live")
-        driver.find_element(By.CSS_SELECTOR, "#formLive > div:nth-child(6) > div > div > div > button:nth-child(2) > i").click()
+        driver.find_element(By.CSS_SELECTOR, f"{chonkieulive}").click()
 
         log_info("Đang nhập link nguồn cho phiên live")
         driver.find_element(By.ID, "url_source").send_keys(linknguon)

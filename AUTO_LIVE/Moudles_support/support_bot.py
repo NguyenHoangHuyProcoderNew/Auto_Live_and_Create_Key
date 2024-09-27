@@ -33,3 +33,4 @@ kenhchinh_quynhem = "https://www.tiktok.com/@tytythanrien/live"
 
 
 tieudelive = "kéo rank Liên Quân"
+chonkieulive = "#formLive > div:nth-child(6) > div > div > div > button:nth-child(2) > i"
