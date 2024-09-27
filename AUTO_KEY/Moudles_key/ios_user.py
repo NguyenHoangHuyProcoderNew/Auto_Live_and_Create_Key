@@ -111,9 +111,18 @@ def taokey_1ngay(message):
 
         bot_reply(user_id, f"{ma_key_cuoi}")
 
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")
     except TimeoutError:
         bot_reply(user_id, "Tạo key thất bại, xảy ra sự cố kết nối internet")
         log_error("Tạo key thất bại, xảy ra sự cố kết nối internet")
+
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
 
 def taokey_7ngay(message):
     # Nhập chức năng đóng toàn bộ trình duyệt Chrome driver cũ
@@ -156,9 +165,19 @@ def taokey_7ngay(message):
 
         bot_reply(user_id, f"{ma_key_cuoi}")
 
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
+
     except TimeoutError:
         bot_reply(user_id, "Tạo key thất bại, xảy ra sự cố kết nối internet")
-        log_error("Tạo key thất bại, xảy ra sự cố kết nối internet")    
+        log_error("Tạo key thất bại, xảy ra sự cố kết nối internet")  
+
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")          
 
 def taokey_30ngay(message):
     # Nhập chức năng đóng toàn bộ trình duyệt Chrome driver cũ
@@ -201,9 +220,19 @@ def taokey_30ngay(message):
 
         bot_reply(user_id, f"{ma_key_cuoi}")
 
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
+
     except TimeoutError:
         bot_reply(user_id, "Tạo key thất bại, xảy ra sự cố kết nối internet")
         log_error("Tạo key thất bại, xảy ra sự cố kết nối internet")    
+
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
 
 def taokey_365ngay(message):
     # Nhập chức năng đóng toàn bộ trình duyệt Chrome driver cũ
@@ -246,9 +275,19 @@ def taokey_365ngay(message):
 
         bot_reply(user_id, f"{ma_key_cuoi}")
 
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
+
     except TimeoutError:
         bot_reply(user_id, "Tạo key thất bại, xảy ra sự cố kết nối internet")
         log_error("Tạo key thất bại, xảy ra sự cố kết nối internet")    
+
+        driver.quit()
+        log_info("Đóng trình duyệt Chrome")
+
+        log_info("Kết thúc tiến trình")        
 
 def taokey_thucong(message):
     global thoigian_key
