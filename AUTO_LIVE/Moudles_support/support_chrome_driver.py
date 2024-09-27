@@ -3,8 +3,8 @@ import os
 import signal
 import psutil
 
-chromedriver_path = r'/Users/macx/Downloads/chromedriver-mac-x64/chromedriver'
-dir = "/Users/macx/Downloads/Du lieu trinh duyet"
+chromedriver_path = r'D:\\Chrome driver & du lieu bot auto\\chrome_driver\\chromedriver.exe'
+dir = "D:\\Chrome driver & du lieu bot auto\\du lieu trinh duyet"
 
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho Mac OS
@@ -35,32 +35,14 @@ dir = "/Users/macx/Downloads/Du lieu trinh duyet"
 
 # Hàm tắt toàn bộ trình duyệt chrome trước khi khởi tạo chrome mới dành cho windows
 def dong_chromedriver_cu(message):
-    # Danh sách chỉ chứa chromedriver
-    browser_names = ['chromedriver.exe']
-    
-    # Lấy danh sách PID của tất cả tiến trình chromedriver đang chạy
-    chromedriver_pids = []
-    
-    # Tìm các tiến trình chromedriver.exe
-    for process in psutil.process_iter():
+    # Duyệt qua các process đang chạy
+    for process in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
         try:
-            if process.name().lower() == 'chromedriver.exe':
-                chromedriver_pids.append(process.pid)
-        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-            pass
-
-    # Tiến hành đóng các tiến trình chromedriver và các tiến trình con của nó
-    for pid in chromedriver_pids:
-        try:
-            chromedriver_process = psutil.Process(pid)
-            # Đóng chromedriver
-            chromedriver_process.terminate()
-            chromedriver_process.wait()
-
-            # Đóng các tiến trình con (có thể là chrome.exe)
-            for child in chromedriver_process.children(recursive=True):
-                child.terminate()
-                child.wait()
-
+            # Kiểm tra nếu process có liên quan đến chromedriver hoặc selenium
+            if process.info['name'] == 'chrome.exe' or process.info['name'] == 'chromedriver.exe':
+                cmdline = ' '.join(process.info['cmdline'])
+                if '--remote-debugging-port' in cmdline:  # Chỉ ra rằng đây là một Chrome do Selenium mở
+                    print(f"Đóng process: {process.info['pid']} - {cmdline}")
+                    process.terminate()  # Hoặc dùng process.kill() nếu cần thiết
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
