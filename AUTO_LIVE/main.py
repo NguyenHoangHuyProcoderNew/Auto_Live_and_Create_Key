@@ -44,10 +44,10 @@ def chon_taikhoan_molive(message):
     bot.send_message(message.chat.id, "Vui lòng chọn tài khoản cần mở live", reply_markup=nut_chontaikhoan_molive)
     log_info(f"Người dùng đã chọn Mở live từ menu chính, đang yêu cầu người dùng chọn tài khoản cần mở live")
 
-# Mở live tài khoản Văn Bảo
+# Mở live tài khoản Tấn Tài
 @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Tấn Tài")
 def molive_vanbao(message):
-    from AUTO_LIVE.Moudles_live.Molive_TanTai import chon_nguon_chophienlive_tantai, xuly_molive_tantai
+    from Moudles_live.Molive_TanTai import chon_nguon_chophienlive_tantai, xuly_molive_tantai
     chon_nguon_chophienlive_tantai(message)
     bot.register_next_step_handler(message, xuly_molive_tantai)
 
