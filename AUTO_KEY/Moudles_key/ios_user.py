@@ -311,7 +311,7 @@ def taokey_thucong(message):
 
     # Kiểm tra xem có truy cập trang chủ web tạo key thành công hay không
     try:
-        driver.get('https://new.ppapikey.xyz/pagesMain/auth-login')
+        driver.get('https://new.ppapikey.xyz/account/dang-nhap')
 
         # Đợi tối đa 60 giây để chờ phần tử của trang web xuất hiện để đảm bảo rằng trang web đã được load hoàn tất
         WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div/div')))
@@ -343,7 +343,7 @@ def taokey_thucong(message):
             log_info("Đang truy cập vào trang listkey")
 
             # Truy cập vào trang listkey
-            driver.get('https://new.ppapikey.xyz/pagesMain/key')
+            driver.get('https://new.ppapikey.xyz/user/danh-sach-key')
 
             # Kiểm tra xem có truy cập trang listkey thành công hay không
             try:

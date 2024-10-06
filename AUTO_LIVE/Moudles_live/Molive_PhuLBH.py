@@ -332,7 +332,7 @@ def xuly_molive_phulbh(message):
                         )
 
                         bot_reply(user_id, "Nút bắt đầu live đã xuất hiện trong lần kiểm tra thứ 2")
-                        bot_reply("Tiến hành mở phiên live")
+                        bot_reply(user_id, "Tiến hành mở phiên live")
 
                         # Click vào nút "Bắt đầu live" lần 2
                         driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
