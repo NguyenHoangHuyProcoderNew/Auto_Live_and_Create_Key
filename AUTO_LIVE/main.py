@@ -40,27 +40,27 @@ def chucnang_start(message):
 # Chức năng mở live
 @bot.message_handler(func=lambda message: message.text == "Mở live")
 def chon_taikhoan_molive(message):
-    nut_chontaikhoan_molive = types.ReplyKeyboardMarkup(True).add('Mở live tài khoản Tấn Tài', 'Mở live tài khoản phụ LBH', 'Mở live tài khoản Meme').add('Mở live tài khoản Bảo Hân Store', 'Mở live tài khoản Chính LBH').add('Trở lại menu chính')
+    nut_chontaikhoan_molive = types.ReplyKeyboardMarkup(True).add('Mở live tài khoản Chính LBH').add('Mở live tài khoản Meme').add('Mở live tài khoản Bảo Hân Store').add('Trở lại menu chính')
     bot.send_message(message.chat.id, "Vui lòng chọn tài khoản cần mở live", reply_markup=nut_chontaikhoan_molive)
     log_info(f"Người dùng đã chọn Mở live từ menu chính, đang yêu cầu người dùng chọn tài khoản cần mở live")
 
-# Mở live tài khoản Tấn Tài
-@bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Tấn Tài")
-def molive_vanbao(message):
-    from Moudles_live.Molive_TanTai import chon_nguon_chophienlive_tantai, xuly_molive_tantai
-    chon_nguon_chophienlive_tantai(message)
-    bot.register_next_step_handler(message, xuly_molive_tantai)
+# # Mở live tài khoản Tấn Tài
+# @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Tấn Tài")
+# def molive_vanbao(message):
+#     from Moudles_live.Molive_TanTai import chon_nguon_chophienlive_tantai, xuly_molive_tantai
+#     chon_nguon_chophienlive_tantai(message)
+#     bot.register_next_step_handler(message, xuly_molive_tantai)
 
-    log_info("Người dùng đã chọn mở live tài khoản Tấn Tài")
+#     log_info("Người dùng đã chọn mở live tài khoản Tấn Tài")
 
-# Mở live tài khoản phụ LBH
-@bot.message_handler(func=lambda message: message.text == "Mở live tài khoản phụ LBH")
-def molive_phulbh(message):
-    from Moudles_live.Molive_PhuLBH import chon_nguon_chophienlive_phulbh, xuly_molive_phulbh
-    chon_nguon_chophienlive_phulbh(message)
-    bot.register_next_step_handler(message, xuly_molive_phulbh)
+# # Mở live tài khoản phụ LBH
+# @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản phụ LBH")
+# def molive_phulbh(message):
+#     from Moudles_live.Molive_PhuLBH import chon_nguon_chophienlive_phulbh, xuly_molive_phulbh
+#     chon_nguon_chophienlive_phulbh(message)
+#     bot.register_next_step_handler(message, xuly_molive_phulbh)
 
-    log_info("Người dùng đã chọn mở live tài khoản phụ LBH")
+#     log_info("Người dùng đã chọn mở live tài khoản phụ LBH")
 
 # Mở live tài khoản Meme
 @bot.message_handler(func=lambda message: message.text == "Mở live tài khoản Meme")

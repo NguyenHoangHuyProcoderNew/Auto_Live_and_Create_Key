@@ -49,7 +49,7 @@ def trolai_menuchinh(message):
 # Yêu cầu người dùng chọn nguồn cho phiên live 
 def chon_nguon_chophienlive_chinhlbh(message):
     # Tạo nút chọn nguồn cho phiên live
-    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('Hồi Chiêu Cũ', 'Hồi Chiêu Mới', 'Quỳnh Em Bản Full HD').add('Kênh Chính Nam Mod', 'Kênh chính QUỲNH EM').add('Trở lại menu chính')
+    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('HC Cũ').add('Quỳnh Em').add('Trở lại menu chính')
     bot.send_message(message.chat.id, "Bạn muốn sử dụng nguồn live nào cho phiên live?", reply_markup=nut_chon_nguon_chophienlive)
     log_info("Đang yêu cầu người dùng chọn nguồn cho phiên live")
     
@@ -65,36 +65,30 @@ def xuly_molive_chinhlbh(message):
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_chinhlbh
 
     # Kiểm tra sự lựa chọn mà người dùng đã chọn ở hàm Chọn Nguồn Cho Phiên Live
-    if message.text == "Hồi Chiêu Cũ":
+    if message.text == "HC Cũ":
         bot_reply(user_id, "Tiến hành mở phiên live với nguồn HỒI CHIÊU CŨ")
         log_info(f"Người dùng đã chọn nguồn live HỒI CHIÊU CŨ")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
         linknguon = hoichieu_cu
-    elif message.text == "Hồi Chiêu Mới":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
-        log_info("Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
-
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = hoichieu_moi
-    elif message.text == "Quỳnh Em Bản Full HD":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
-        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
+    elif message.text == "Quỳnh Em":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM")
+        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
         linknguon = quynhem_chui
-    elif message.text == "Kênh Chính Nam Mod":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Nam Mod")
-        log_info("Người dùng đã chọn nguồn live Kênh Chính Nam Mod")
+    # elif message.text == "Kênh Chính Nam Mod":
+    #     bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Nam Mod")
+    #     log_info("Người dùng đã chọn nguồn live Kênh Chính Nam Mod")
 
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = nammod
-    elif message.text == "Kênh chính QUỲNH EM":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
-        log_info("Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     linknguon = nammod
+    # elif message.text == "Kênh chính QUỲNH EM":
+    #     bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+    #     log_info("Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
 
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = kenhchinh_quynhem
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     linknguon = kenhchinh_quynhem
     elif message.text == "Trở lại menu chính":
         log_info(f"Người dùng đã chọn Trở lại menu chính")
         trolai_menuchinh(message)

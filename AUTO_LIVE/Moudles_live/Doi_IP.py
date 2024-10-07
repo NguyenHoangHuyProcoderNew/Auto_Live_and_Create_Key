@@ -49,9 +49,9 @@ def trolai_menuchinh(message):
 # Yêu cầu người dùng chọn tài khoản cần đổi IP & Thiết Bị
 def chon_taikhoan_doiip_va_thietbi(message):
     # Tạo nút chọn tài khoản cần đổi IP & Thiết Bị
-    button_chontaikhoan = telebot.types.ReplyKeyboardMarkup(True).add("Đổi IP Tài khoản Tấn Tài", "Đổi IP Tài khoản Phụ LBH", "Đổi IP Tài khoản Meme").add("Đổi IP Tài khoản Bảo Hân Store", "Đổi IP Tài khoản Chính LBH").add("Trở lại menu chính")
+    button_chontaikhoan = telebot.types.ReplyKeyboardMarkup(True).add('Đổi IP tài khoản Chính LBH').add('Đổi IP tài khoản Meme').add('Đổi IP tài khoản Bảo Hân Store').add("Trở lại menu chính")
 
-    # Hỏi người dùng muốn chọn tài khoản nào để đổi IP & Thiết Bị
+    # Yêu cầu người dùng chọn tài khoản nào để đổi IP & Thiết Bị
     bot.send_message(message.chat.id, "Bạn muốn đổi IP tài khoản nào?", reply_markup=button_chontaikhoan)
 
     bot.register_next_step_handler(message, xuly_doiip_va_thietbi)   
@@ -62,23 +62,15 @@ def xuly_doiip_va_thietbi(message):
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
 
     # Kiểm tra sự lựa chọn của người dùng
-    if message.text == "Đổi IP Tài khoản Tấn Tài":
-        from Moudles_support.support_bot import doiip_tantai, doi_thietbi_tantai
-        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị cho Tài khoản Tấn Tài")
-        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Tấn Tài")
+    if message.text == "Đổi IP tài khoản Chính LBH":
+        from Moudles_support.support_bot import doiip_chinhlbh, doi_thietbi_chinhlbh
+        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Chính LBH")
+        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Chính LBH")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
-        ip = doiip_tantai
-        thietbi = doi_thietbi_tantai
-    elif message.text == "Đổi IP Tài khoản Phụ LBH":
-        from Moudles_support.support_bot import doiip_nickphulbh, doi_thietbi_nickphulbh
-        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Phụ LBH")
-        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Phụ LBH")
-
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        ip = doiip_nickphulbh
-        thietbi = doi_thietbi_nickphulbh
-    elif message.text == "Đổi IP Tài khoản Meme":
+        ip = doiip_chinhlbh
+        thietbi = doi_thietbi_chinhlbh 
+    elif message.text == "Đổi IP tài khoản Meme":
         from Moudles_support.support_bot import doiip_meme, doi_thietbi_meme
         bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Meme")
         log_info(f"Người dùng đã chọn Đổi IP Tài khoản Meme")
@@ -86,7 +78,7 @@ def xuly_doiip_va_thietbi(message):
         bot_reply(user_id, "Truy cập vào trang web livestream")
         ip = doiip_meme
         thietbi = doi_thietbi_meme
-    elif message.text == "Đổi IP Tài khoản Bảo Hân Store":
+    elif message.text == "Đổi IP tài khoản Bảo Hân Store":
         from Moudles_support.support_bot import doiip_baohanstore, doi_thietbi_baohanstore
         bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Bảo Hân Store")
         log_info(f"Người dùng đã chọn Đổi IP Tài khoản Bảo Hân Store")
@@ -94,15 +86,22 @@ def xuly_doiip_va_thietbi(message):
         bot_reply(user_id, "Truy cập vào trang web livestream")
         ip = doiip_baohanstore
         thietbi = doi_thietbi_baohanstore
-    elif message.text == "Đổi IP Tài khoản Chính LBH":
-        from Moudles_support.support_bot import doiip_chinhlbh, doi_thietbi_chinhlbh
-        bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Chính LBH")
-        log_info(f"Người dùng đã chọn Đổi IP Tài khoản Chính LBH")
+    # elif message.text == "Đổi IP Tài khoản Phụ LBH":
+    #     from Moudles_support.support_bot import doiip_nickphulbh, doi_thietbi_nickphulbh
+    #     bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Phụ LBH")
+    #     log_info(f"Người dùng đã chọn Đổi IP Tài khoản Phụ LBH")
 
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        ip = doiip_chinhlbh
-        thietbi = doi_thietbi_chinhlbh        
-    
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     ip = doiip_nickphulbh
+    #     thietbi = doi_thietbi_nickphulbh
+    # elif message.text == "Đổi IP Tài khoản Chính LBH":
+    #     from Moudles_support.support_bot import doiip_chinhlbh, doi_thietbi_chinhlbh
+    #     bot_reply(user_id, "Tiến hành đổi IP & Thiết Bị Tài khoản Chính LBH")
+    #     log_info(f"Người dùng đã chọn Đổi IP Tài khoản Chính LBH")
+
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     ip = doiip_chinhlbh
+    #     thietbi = doi_thietbi_chinhlbh        
     elif message.text == "Trở lại menu chính":
         trolai_menuchinh(message)
         return
