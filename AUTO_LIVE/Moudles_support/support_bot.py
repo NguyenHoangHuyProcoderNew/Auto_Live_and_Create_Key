@@ -20,10 +20,10 @@ doi_thietbi_nickphulbh = "renew-23960"
 id_tiktok_nickphulbh = "nammapsang_keorank"
 chon_taikhoan_nickphulbh = "#tiktok_account > option:nth-child(3)"
 
-doiip_meme = "ip-23961"
-doi_thietbi_meme = "renew-23961"
+doiip_meme = "ip-24031"
+doi_thietbi_meme = "renew-24031"
 id_tiktok_meme = "meme.l810"
-chon_taikhoan_meme = "#tiktok_account > option:nth-child(4)"
+chon_taikhoan_meme = "#tiktok_account > option:nth-child(5)"
 
 doiip_baohanstore = "ip-24033"
 doi_thietbi_baohanstore = "renew-24033"

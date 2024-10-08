@@ -49,7 +49,7 @@ def trolai_menuchinh(message):
 # Yêu cầu người dùng chọn nguồn cho phiên live 
 def chon_nguon_chophienlive_baohanstore(message):
     # Tạo nút chọn nguồn cho phiên live
-    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('HC Cũ').add('Quỳnh Em').add('Trở lại menu chính')
+    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('HC Cũ').add('Quỳnh Em').add('Trở lại menu chính')
     bot.send_message(message.chat.id, "Bạn muốn sử dụng nguồn live nào cho phiên live?", reply_markup=nut_chon_nguon_chophienlive)
     log_info("Đang yêu cầu người dùng chọn nguồn cho phiên live")
     
@@ -341,7 +341,7 @@ def xuly_molive_baohanstore(message):
 
                         if thongbao_molive_lan2 == "Success":
                             bot_reply("Mở phiên live thành công")
-                            log_info(f"Thông báo của web là {thongbao_molive_lan1} - Mở live thành công")
+                            log_info(f"Thông báo của web là {thongbao_molive_lan2} - Mở live thành công")
 
                             # Truy cập vào phiên live để  kiểm tra thời điểm phiên live được mở lần 2
                             bot_reply(user_id, "Tiến hành truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
