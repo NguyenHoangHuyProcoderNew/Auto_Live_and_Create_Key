@@ -340,7 +340,7 @@ def xuly_molive_meme(message):
                         ''')
 
                         if thongbao_molive_lan2 == "Success":
-                            bot_reply("Mở phiên live thành công")
+                            bot_reply(user_id, "Mở phiên live thành công")
                             log_info(f"Thông báo của web là {thongbao_molive_lan2} - Mở live thành công")
 
                             # Truy cập vào phiên live để  kiểm tra thời điểm phiên live được mở lần 2
