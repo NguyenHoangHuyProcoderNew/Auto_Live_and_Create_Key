@@ -41,65 +41,24 @@ from Moudles_support.support_bot import bot_reply
 # ID của ADMIN Bot
 from Moudles_support.support_bot import user_id
 
+"""" Trở lại menu chính """
+def trolai_menuchinh(message):
+    nut_menuchinh = telebot.types.ReplyKeyboardMarkup(True).add('Mở live', 'Tắt live', 'Đổi IP').add('Trở về menu chính')
+    bot.send_message(message.chat.id, "VUI LÒNG CHỌN 👇", reply_markup=nut_menuchinh)
+
 def main_test(message):
     driver = webdriver.Chrome(service=service, options=options)
 
-    # driver.get('https://www.tiktok.com/@phuoc19903/live')
+    driver.get('https://autolive.me/tiktok')
 
-# Kiểm tra xem có truy cập phiên live thành công hay không lần 1
     try:
-        # Mở trang web livestream
-        driver.get(f'https://www.tiktok.com/@phuoc19903/live')
+        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
+        print("Load trang web livestream thành công")
 
-        # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất lần 1
-        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[3]/div/div[1]/a')))
+        dulieu_trangthai = driver.find_element(By.CSS_SELECTOR, "td.text-center:nth-child(10)").text
 
-        bot_reply(user_id, "Truy cập phiên live thành công, khi nào phiên live diễn ra tôi sẽ thông báo cho bạn")
-        log_success("Truy cập phiên live thành công => TIẾN HÀNH KIỂM TRA THỜI ĐIỂM PHIÊN LIVE ĐƯỢC MỞ")
+        if dulieu_trangthai == "Mới":
+            print("Phiên live đã được mở")
 
-        # Vòng lặp whilte lặp lại việc kiểm tra số lượng người xem của phiên live cho đến khi nào phiên live được diễn ra thì mới kết thúc vòng lặp lần 1
-        while True:
-            now = datetime.datetime.now() # Biến lấy ngày giờ hiện tại của hệ thống
-            try:
-                # Đợi tối đa 10 giây để XPATCH chứa dữ liệu là số lượng người xem của phiên live xuất hiện rồi mới kiểm tra
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[4]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/div[2]/div[2]/div/div')))
-                
-                bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
-                log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
-
-                log_info("Đóng trình duyệt chrome")
-                driver.quit()
-
-                log_info("Kết thúc tiến trình")
-                return
-            except TimeoutException:
-                log_error("Phiên live chưa được diễn ra")
-                log_info("Làm mới lại phiên live")
-
-                # Làm mới lại phiên live
-                driver.refresh()
-
-                # Kiểm tra xem có làm mới lại phiên live thành công hay không
-                try:
-                    # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất
-                    WebDriverWait(driver, 100).until(
-                        EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div[3]/div/div[1]/a"))
-                    )
-                except TimeoutException:
-                    bot_reply(user_id, "Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
-                    log_error("Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
-
-                    log_info("Đóng trình duyệt chrome")
-                    driver.quit()
-
-                    log_info("Kết thúc tiến trình")
-                    return
     except TimeoutError:
-        bot_reply(user_id, "Không thể truy cập phiên live, xảy ra sự cố kết nối internet")
-        log_info("Không thể truy cập phiên live do kết nối internet")
-
-        log_info("Đóng trình duyệt chrome")
-        driver.quit()
-
-        log_info("Kết thúc tiến trình")
-        return    
+        print("Load trang web thất bại")
