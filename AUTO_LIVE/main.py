@@ -118,9 +118,11 @@ def trolai_menuchinh(message):
 # Thử nghiệm
 @bot.message_handler(commands=['test'])
 def test(message):
-    from Moudles_live.test import main_test
+    from Moudles_live.test import chon_nguon, xuly_chonnguon
 
-    main_test(message)
+    chon_nguon(message)
+    bot.register_next_step_handler(message, xuly_chonnguon)
+
 
 """" Chạy Bot """
 while True:

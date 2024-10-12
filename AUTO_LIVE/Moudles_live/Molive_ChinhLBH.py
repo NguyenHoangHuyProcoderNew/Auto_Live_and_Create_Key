@@ -343,12 +343,17 @@ def xuly_molive_chinhlbh(message):
 
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
-                            // JavaScript code here
                             // Đoạn mã JavaScript để lấy nội dung của phần tử
                             var element = document.querySelector('div.text[data-notify-html="text"]');
-                            return element.textContent;
+                            
+                            // Kiểm tra nếu phần tử tồn tại
+                            if (element) {
+                                return element.textContent;  // Trả về nội dung text nếu phần tử tồn tại
+                            } else {
+                                return null;  // Trả về null nếu phần tử không tồn tại
+                            }
                         ''')
-
+                        
                         if thongbao_molive_lan2 == "Success":
                             bot_reply(user_id, "Mở phiên live thành công")
                             log_info(f"Thông báo của web là {thongbao_molive_lan2} - Mở live thành công")

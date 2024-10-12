@@ -41,24 +41,58 @@ from Moudles_support.support_bot import bot_reply
 # ID của ADMIN Bot
 from Moudles_support.support_bot import user_id
 
+kieulive = None
 """" Trở lại menu chính """
 def trolai_menuchinh(message):
     nut_menuchinh = telebot.types.ReplyKeyboardMarkup(True).add('Mở live', 'Tắt live', 'Đổi IP').add('Trở về menu chính')
     bot.send_message(message.chat.id, "VUI LÒNG CHỌN 👇", reply_markup=nut_menuchinh)
 
-def main_test(message):
-    driver = webdriver.Chrome(service=service, options=options)
+def chon_nguon(message):
+    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('HC Cũ').add('Quỳnh Em').add('Trở lại menu chính')
+    bot.send_message(message.chat.id, "Bạn muốn sử dụng nguồn live nào cho phiên live?", reply_markup=nut_chon_nguon_chophienlive)
+    
+    bot.register_next_step_handler(message, xuly_chonnguon)
 
-    driver.get('https://autolive.me/tiktok')
+def xuly_chonnguon(message):
+    global linknguon
+    if message.text == "HC Cũ":
+        linknguon = "hoi chieu cu"
+    elif message.text == "Quỳnh Em":
+        linknguon = "quynhem_chui"
+    elif message.text == "Trở lại menu chính":
+        log_info(f"Người dùng đã chọn Trở lại menu chính")
+        trolai_menuchinh(message)
+        return
+    else:
+        bot_reply(user_id, "Lựa chọn không hợp lệ")
+        trolai_menuchinh(message)
+        log_error("Lựa chọn không hợp lệ - trở về menu chính")
+        return
+    
+    # Sau khi chọn nguồn, chuyển sang bước chọn kiểu live
+    chon_kieulive(message)
 
-    try:
-        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
-        print("Load trang web livestream thành công")
+def chon_kieulive(message):
+    nut_chon_kieulive = types.ReplyKeyboardMarkup(True).add('Kiểu live Mobile').add('Kiểu live Studio V3').add('Trở lại menu chính')
+    bot.send_message(message.chat.id, "Bạn muốn sử dụng kiểu live nào cho phiên live?", reply_markup=nut_chon_kieulive)
 
-        dulieu_trangthai = driver.find_element(By.CSS_SELECTOR, "td.text-center:nth-child(10)").text
+    bot.register_next_step_handler(message, xuly_chonkieulive) 
 
-        if dulieu_trangthai == "Mới":
-            print("Phiên live đã được mở")
+def xuly_chonkieulive(message):
+    global kieulive
+    if message.text == "Kiểu live Mobile":
+        kieulive = "#formLive > div:nth-child(6) > div > div > div > button.h-60.w-60.radius-6.btn-live-type.btn-icon.cur-point.m-r-15.pricing-box-active"
+    elif message.text == "Kiểu live Studio V3":
+        kieulive = "#live_studio_v3"
+    elif message.text == "Trở lại menu chính":
+        log_info(f"Người dùng đã chọn Trở lại menu chính")
+        trolai_menuchinh(message)
+        return
+    else:
+        bot_reply(user_id, "Lựa chọn không hợp lệ")
+        trolai_menuchinh(message)
+        return
 
-    except TimeoutError:
-        print("Load trang web thất bại")
+    # Sau khi chọn kiểu live, thực hiện các thao tác tiếp theo
+    bot_reply(user_id, f"Kiểu live: {kieulive}")
+    bot_reply(user_id, f"Nguồn live: {linknguon}")

@@ -343,10 +343,15 @@ def xuly_molive_meme(message):
 
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
-                            // JavaScript code here
                             // Đoạn mã JavaScript để lấy nội dung của phần tử
                             var element = document.querySelector('div.text[data-notify-html="text"]');
-                            return element.textContent;
+                            
+                            // Kiểm tra nếu phần tử tồn tại
+                            if (element) {
+                                return element.textContent;  // Trả về nội dung text nếu phần tử tồn tại
+                            } else {
+                                return null;  // Trả về null nếu phần tử không tồn tại
+                            }
                         ''')
 
                         if thongbao_molive_lan2 == "Success":
