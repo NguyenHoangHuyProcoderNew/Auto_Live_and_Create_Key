@@ -110,7 +110,7 @@ def xuly_molive_baohanstore(message):
 
     # Mở trang web livestream
     try:
-        driver.get("https://autolive.me/tiktok")
+        driver.get("https://autolive.me/tiktok") ; sleep(10000)
 
         # Chờ tối đa 100 giây để đợi phần tử XPATCH được chỉ định xuất hiện, để đảm bảo trang web livestream đã tải hoàn tất
         WebDriverWait(driver, 100).until(
