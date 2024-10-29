@@ -343,15 +343,10 @@ def xuly_molive_meme(message):
 
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
+                            // JavaScript code here
                             // Đoạn mã JavaScript để lấy nội dung của phần tử
                             var element = document.querySelector('div.text[data-notify-html="text"]');
-                            
-                            // Kiểm tra nếu phần tử tồn tại
-                            if (element) {
-                                return element.textContent;  // Trả về nội dung text nếu phần tử tồn tại
-                            } else {
-                                return null;  // Trả về null nếu phần tử không tồn tại
-                            }
+                            return element.textContent;
                         ''')
 
                         if thongbao_molive_lan2 == "Success":
@@ -362,7 +357,7 @@ def xuly_molive_meme(message):
                             bot_reply(user_id, "Tiến hành truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
                             log_info("Truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
 
-                            # Kiểm tra xem có truy cập phiên live thành công hay không lần 1
+                            # Kiểm tra xem có truy cập phiên live thành công hay không lần 2
                             try:
                                 # Mở trang web livestream
                                 driver.get(f'https://autolive.me/tiktok')
@@ -430,8 +425,9 @@ def xuly_molive_meme(message):
                                 log_info("Kết thúc tiến trình")
                                 return
                         else:
-                            bot_reply(user_id, f"Mở phiên live thất bại\nThông báo từ web: {thongbao_molive_lan1}")
-                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan1}")
+                            bot_reply(user_id, "Mở phiên live thất bại")
+                            bot_reply(user_id, f"Thông báo từ web: {thongbao_molive_lan2}")
+                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan2}")
 
                             driver.quit()
                             log_info("Đóng trình duyệt chrome")

@@ -78,7 +78,7 @@ def xuly_tatlive(message):
             bot_reply(user_id, "Mở trang web live")
             log_info("Truy cập vào trang web live")
 
-            driver.get('https://autolive.one/tiktok')
+            driver.get('https://autolive.me/tiktok')
 
             WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
 

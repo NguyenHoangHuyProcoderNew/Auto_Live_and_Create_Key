@@ -122,7 +122,7 @@ def xuly_doiip_va_thietbi(message):
     try:
         # Mở trang web livestream
         log_info("Truy cập vào trang web livestream")
-        driver.get('https://autolive.one/tiktok')
+        driver.get('https://autolive.me/tiktok')
 
         # Chờ element được chỉ định xuất hiện để xác định có truy cập trang thành công hay không
         WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
