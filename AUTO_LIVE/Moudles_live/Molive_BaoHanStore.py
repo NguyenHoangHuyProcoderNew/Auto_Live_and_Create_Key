@@ -341,6 +341,9 @@ def xuly_molive_baohanstore(message):
                         # Click vào nút "Bắt đầu live" lần 2
                         driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
 
+                        # Chờ thông báo sau khi click vào nút Bắt đầu live lần 2 xuất hiện
+                        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div.notifyjs-corner > div > div.notifyjs-container > div")))
+
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
                             // JavaScript code here
@@ -425,7 +428,7 @@ def xuly_molive_baohanstore(message):
                                 log_info("Kết thúc tiến trình")
                                 return
                         else:
-                            bot_reply(user_id, "Mở phiên live thất bại")
+                            bot_reply(user_id, f"Mở phiên live thất bại")
                             bot_reply(user_id, f"Thông báo từ web: {thongbao_molive_lan2}")
                             log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan2}")
 

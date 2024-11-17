@@ -49,7 +49,7 @@ def trolai_menuchinh(message):
 # Yêu cầu người dùng chọn nguồn cho phiên live 
 def chon_nguon_chophienlive_phulbh(message):
     # Tạo nút chọn nguồn cho phiên live
-    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('Hồi Chiêu Cũ', 'Hồi Chiêu Mới', 'Quỳnh Em Bản Full HD').add('Kênh Chính Nam Mod', 'Kênh chính QUỲNH EM').add('Trở lại menu chính')
+    nut_chon_nguon_chophienlive = types.ReplyKeyboardMarkup(True).add('HC Cũ').add('Quỳnh Em').add('Trở lại menu chính')
     bot.send_message(message.chat.id, "Bạn muốn sử dụng nguồn live nào cho phiên live?", reply_markup=nut_chon_nguon_chophienlive)
     log_info("Đang yêu cầu người dùng chọn nguồn cho phiên live")
     
@@ -59,42 +59,36 @@ def chon_nguon_chophienlive_phulbh(message):
 def xuly_molive_phulbh(message):
     # Nhập hàm đóng trình duyệt Chrome driver cũ
     from Moudles_support.support_chrome_driver import dong_chromedriver_cu
-    from Moudles_support.support_bot import chonkieulive, id_tiktok_nickphulbh, chon_taikhoan_nickphulbh, tieudelive, hoichieu_cu, quynhem_chui, nammod, hoichieu_moi, kenhchinh_quynhem
+    from Moudles_support.support_bot import chonkieulive, id_tiktok_tantai, chon_taikhoan_nickphulbh, tieudelive, hoichieu_cu, quynhem_chui, nammod, hoichieu_moi, kenhchinh_quynhem
 
-    id_tiktok = id_tiktok_nickphulbh
+    id_tiktok = id_tiktok_tantai
     chon_taikhoan_taocauhinhmoi = chon_taikhoan_nickphulbh
 
     # Kiểm tra sự lựa chọn mà người dùng đã chọn ở hàm Chọn Nguồn Cho Phiên Live
-    if message.text == "Hồi Chiêu Cũ":
+    if message.text == "HC Cũ":
         bot_reply(user_id, "Tiến hành mở phiên live với nguồn HỒI CHIÊU CŨ")
         log_info(f"Người dùng đã chọn nguồn live HỒI CHIÊU CŨ")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
         linknguon = hoichieu_cu
-    elif message.text == "Hồi Chiêu Mới":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
-        log_info("Tiến hành mở phiên live với nguồn Hồi Chiêu Mới")
-
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = hoichieu_moi
-    elif message.text == "Quỳnh Em Bản Full HD":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
-        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM FULL HD")
+    elif message.text == "Quỳnh Em":
+        bot_reply(user_id, "Tiến hành mở phiên live với nguồn QUỲNH EM")
+        log_info("Tiến hành mở phiên live với nguồn QUỲNH EM")
 
         bot_reply(user_id, "Truy cập vào trang web livestream")
         linknguon = quynhem_chui
-    elif message.text == "Kênh Chính Nam Mod":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Nam Mod")
-        log_info("Người dùng đã chọn nguồn live Kênh Chính Nam Mod")
+    # elif message.text == "Kênh Chính Nam Mod":
+    #     bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Nam Mod")
+    #     log_info("Người dùng đã chọn nguồn live Kênh Chính Nam Mod")
 
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = nammod
-    elif message.text == "Kênh chính QUỲNH EM":
-        bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
-        log_info("Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     linknguon = nammod
+    # elif message.text == "Kênh chính QUỲNH EM":
+    #     bot_reply(user_id, "Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
+    #     log_info("Tiến hành mở phiên live với nguồn Kênh Chính Quỳnh Em")
 
-        bot_reply(user_id, "Truy cập vào trang web livestream")
-        linknguon = kenhchinh_quynhem
+    #     bot_reply(user_id, "Truy cập vào trang web livestream")
+    #     linknguon = kenhchinh_quynhem
     elif message.text == "Trở lại menu chính":
         log_info(f"Người dùng đã chọn Trở lại menu chính")
         trolai_menuchinh(message)
@@ -110,7 +104,7 @@ def xuly_molive_phulbh(message):
     log_info("Chạy hàm đóng các phiên trình duyệt Chrome driver cũ")
 
     dong_chromedriver_cu(message) # Chạy hàm đóng các phiên trình duyệt Chrome driver cũ
-    
+
     # Khởi tạo Chrome driver
     driver = webdriver.Chrome(service=service, options=options)
 
@@ -239,11 +233,11 @@ def xuly_molive_phulbh(message):
                         # Kiểm tra xem có truy cập phiên live thành công hay không lần 1
                         try:
                             # Mở trang web livestream
-                            driver.get(f'https://www.tiktok.com/@{id_tiktok}/live')
+                            driver.get(f'https://autolive.me/tiktok')
 
                             # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất lần 1
-                            WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[3]/div/div[1]/a')))
-
+                            WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
+                            
                             bot_reply(user_id, "Truy cập phiên live thành công, khi nào phiên live diễn ra tôi sẽ thông báo cho bạn")
                             log_success("Truy cập phiên live thành công => TIẾN HÀNH KIỂM TRA THỜI ĐIỂM PHIÊN LIVE ĐƯỢC MỞ")
 
@@ -252,30 +246,40 @@ def xuly_molive_phulbh(message):
                                 now = datetime.datetime.now() # Biến lấy ngày giờ hiện tại của hệ thống
                                 try:
                                     # Đợi tối đa 10 giây để XPATCH chứa dữ liệu là số lượng người xem của phiên live xuất hiện rồi mới kiểm tra
-                                    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[4]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/div[2]/div[2]/div/div')))
-                                    
-                                    bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
-                                    log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+                                    WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
 
-                                    log_info("Đóng trình duyệt chrome")
-                                    driver.quit()
+                                    # Kiểm tra dữ liệu của phần tử Trạng thái
+                                    dulieu_trangthai = driver.find_element(By.CSS_SELECTOR, "td.text-center:nth-child(10)").text
 
-                                    log_info("Kết thúc tiến trình")
-                                    return
-                                except TimeoutException:
-                                    log_error("Phiên live chưa được diễn ra")
-                                    log_info("Làm mới lại phiên live")
+                                    if dulieu_trangthai == "Đang live":
+                                        bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+                                        log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
 
-                                    # Làm mới lại phiên live
-                                    driver.refresh()
+                                        log_info("Đóng trình duyệt chrome")
+                                        driver.quit()
 
-                                    # Kiểm tra xem có làm mới lại phiên live thành công hay không
-                                    try:
-                                        # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất
-                                        WebDriverWait(driver, 100).until(
-                                            EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div[3]/div/div[1]/a"))
-                                        )
-                                    except TimeoutException:
+                                        log_info("Kết thúc tiến trình")
+                                        return
+                                    else:
+                                        log_error(f"Dữ liệu của phần tử trạng thái là {dulieu_trangthai} - phiên live chưa được diễn ra")
+                                        log_info("Làm mới lại trang web livestream")
+
+                                        driver.refresh()
+
+                                        # Kiểm tra xem có làm mới lại trang web livestream thành công hay không
+                                        try:
+                                            WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
+                                            log_success("Làm mới trang web livestream thành công")
+                                        except TimeoutError:
+                                            bot_reply(user_id, "Kiểm tra thời điểm diễn ra phiên live không thành công, xảy ra sự cố kết nối internet")
+                                            log_error("Không thể load trang web livestream trong thời gian chờ quy định, xảy ra sự cố kết nối internet")
+
+                                            log_info("Đóng trình duyệt Chrome")
+                                            driver.quit()
+
+                                            log_info("Kết thúc tiến trình")
+                                            return
+                                except TimeoutError:
                                         bot_reply(user_id, "Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
                                         log_error("Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
 
@@ -337,6 +341,9 @@ def xuly_molive_phulbh(message):
                         # Click vào nút "Bắt đầu live" lần 2
                         driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
 
+                        # Chờ thông báo sau khi click vào nút Bắt đầu live lần 2 xuất hiện
+                        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div.notifyjs-corner > div > div.notifyjs-container > div")))
+
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
                             // JavaScript code here
@@ -346,8 +353,8 @@ def xuly_molive_phulbh(message):
                         ''')
 
                         if thongbao_molive_lan2 == "Success":
-                            bot_reply("Mở phiên live thành công")
-                            log_info(f"Thông báo của web là {thongbao_molive_lan1} - Mở live thành công")
+                            bot_reply(user_id, "Mở phiên live thành công")
+                            log_info(f"Thông báo của web là {thongbao_molive_lan2} - Mở live thành công")
 
                             # Truy cập vào phiên live để  kiểm tra thời điểm phiên live được mở lần 2
                             bot_reply(user_id, "Tiến hành truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
@@ -356,11 +363,11 @@ def xuly_molive_phulbh(message):
                             # Kiểm tra xem có truy cập phiên live thành công hay không lần 2
                             try:
                                 # Mở trang web livestream
-                                driver.get(f'https://www.tiktok.com/@{id_tiktok}/live')
+                                driver.get(f'https://autolive.me/tiktok')
 
                                 # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất lần 1
-                                WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[3]/div/div[1]/a')))
-
+                                WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
+                                
                                 bot_reply(user_id, "Truy cập phiên live thành công, khi nào phiên live diễn ra tôi sẽ thông báo cho bạn")
                                 log_success("Truy cập phiên live thành công => TIẾN HÀNH KIỂM TRA THỜI ĐIỂM PHIÊN LIVE ĐƯỢC MỞ")
 
@@ -369,30 +376,40 @@ def xuly_molive_phulbh(message):
                                     now = datetime.datetime.now() # Biến lấy ngày giờ hiện tại của hệ thống
                                     try:
                                         # Đợi tối đa 10 giây để XPATCH chứa dữ liệu là số lượng người xem của phiên live xuất hiện rồi mới kiểm tra
-                                        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/main/div[4]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div/div/div[2]/div[2]/div/div')))
-                                        
-                                        bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
-                                        log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+                                        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
 
-                                        log_info("Đóng trình duyệt chrome")
-                                        driver.quit()
+                                        # Kiểm tra dữ liệu của phần tử Trạng thái
+                                        dulieu_trangthai = driver.find_element(By.CSS_SELECTOR, "td.text-center:nth-child(10)").text
 
-                                        log_info("Kết thúc tiến trình")
-                                        return
-                                    except TimeoutException:
-                                        log_error("Phiên live chưa được diễn ra")
-                                        log_info("Làm mới lại phiên live")
+                                        if dulieu_trangthai == "Đang live":
+                                            bot_reply(user_id, f"Check live hoàn tất, phiên live đã được mở vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
+                                            log_info(f"Phiên live đã được diễn ra vào lúc {now.strftime('%d/%m/%Y %H:%M:%S')}")
 
-                                        # Làm mới lại phiên live
-                                        driver.refresh()
+                                            log_info("Đóng trình duyệt chrome")
+                                            driver.quit()
 
-                                        # Kiểm tra xem có làm mới lại phiên live thành công hay không
-                                        try:
-                                            # Chờ tối đa 100 giây để XPATCH được chỉ định xuất hiện, để đảm bảo rằng phiên live đã tải hoàn tất
-                                            WebDriverWait(driver, 100).until(
-                                                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div[3]/div/div[1]/a"))
-                                            )
-                                        except TimeoutException:
+                                            log_info("Kết thúc tiến trình")
+                                            return
+                                        else:
+                                            log_error(f"Dữ liệu của phần tử trạng thái là {dulieu_trangthai} - phiên live chưa được diễn ra")
+                                            log_info("Làm mới lại trang web livestream")
+
+                                            driver.refresh()
+
+                                            # Kiểm tra xem có làm mới lại trang web livestream thành công hay không
+                                            try:
+                                                WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/div[1]/div[1]/div/div[2]/h3/b')))
+                                                log_success("Làm mới trang web livestream thành công")
+                                            except TimeoutError:
+                                                bot_reply(user_id, "Kiểm tra thời điểm diễn ra phiên live không thành công, xảy ra sự cố kết nối internet")
+                                                log_error("Không thể load trang web livestream trong thời gian chờ quy định, xảy ra sự cố kết nối internet")
+
+                                                log_info("Đóng trình duyệt Chrome")
+                                                driver.quit()
+
+                                                log_info("Kết thúc tiến trình")
+                                                return
+                                    except TimeoutError:
                                             bot_reply(user_id, "Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
                                             log_error("Kiểm tra phiên live thất bại, không thể tải phiên live trong thời gian chờ quy định")
 
@@ -411,8 +428,9 @@ def xuly_molive_phulbh(message):
                                 log_info("Kết thúc tiến trình")
                                 return
                         else:
-                            bot_reply(user_id, f"Mở phiên live thất bại\nThông báo từ web: {thongbao_molive_lan1}")
-                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan1}")
+                            bot_reply(user_id, f"Mở phiên live thất bại")
+                            bot_reply(user_id, f"Thông báo từ web: {thongbao_molive_lan2}")
+                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan2}")
 
                             driver.quit()
                             log_info("Đóng trình duyệt chrome")

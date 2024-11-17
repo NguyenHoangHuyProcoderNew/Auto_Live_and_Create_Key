@@ -341,19 +341,17 @@ def xuly_molive_chinhlbh(message):
                         # Click vào nút "Bắt đầu live" lần 2
                         driver.find_element(By.CSS_SELECTOR, "button.btn.btn-circle.btn-dark.btn-sm.waves-effect.waves-light.btn-status-live[data-status='1'][data-toggle='tooltip'][data-placement='top'][data-original-title='Bắt đầu live']").click()
 
+                        # Chờ thông báo sau khi click vào nút Bắt đầu live lần 2 xuất hiện
+                        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div.notifyjs-corner > div > div.notifyjs-container > div")))
+
                         # Lấy nội dung của thông báo "Bắt đầu live" lần 2
                         thongbao_molive_lan2 = driver.execute_script('''
+                            // JavaScript code here
                             // Đoạn mã JavaScript để lấy nội dung của phần tử
                             var element = document.querySelector('div.text[data-notify-html="text"]');
-                            
-                            // Kiểm tra nếu phần tử tồn tại
-                            if (element) {
-                                return element.textContent;  // Trả về nội dung text nếu phần tử tồn tại
-                            } else {
-                                return null;  // Trả về null nếu phần tử không tồn tại
-                            }
+                            return element.textContent;
                         ''')
-                        
+
                         if thongbao_molive_lan2 == "Success":
                             bot_reply(user_id, "Mở phiên live thành công")
                             log_info(f"Thông báo của web là {thongbao_molive_lan2} - Mở live thành công")
@@ -362,7 +360,7 @@ def xuly_molive_chinhlbh(message):
                             bot_reply(user_id, "Tiến hành truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
                             log_info("Truy cập vào phiên live để kiểm tra thời điểm phiên live được mở")
 
-                            # Kiểm tra xem có truy cập phiên live thành công hay không lần 1
+                            # Kiểm tra xem có truy cập phiên live thành công hay không lần 2
                             try:
                                 # Mở trang web livestream
                                 driver.get(f'https://autolive.me/tiktok')
@@ -430,8 +428,9 @@ def xuly_molive_chinhlbh(message):
                                 log_info("Kết thúc tiến trình")
                                 return
                         else:
-                            bot_reply(user_id, f"Mở phiên live thất bại\nThông báo từ web: {thongbao_molive_lan1}")
-                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan1}")
+                            bot_reply(user_id, f"Mở phiên live thất bại")
+                            bot_reply(user_id, f"Thông báo từ web: {thongbao_molive_lan2}")
+                            log_error(f"Mở phiên live thất bại - Thông báo từ web: {thongbao_molive_lan2}")
 
                             driver.quit()
                             log_info("Đóng trình duyệt chrome")
